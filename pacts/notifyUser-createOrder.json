@@ -1,0 +1,48 @@
+{
+  "consumer": {
+    "name": "notifyUser"
+  },
+  "provider": {
+    "name": "createOrder"
+  },
+  "messages": [
+    {
+      "description": "a message for a created order",
+      "metaData": {
+        "contentType": "application/json"
+      },
+      "contents": {
+        "orderId": "string",
+        "userEmail": "string"
+      },
+      "matchingRules": {
+        "body": {
+          "$.orderId": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ],
+            "combine": "AND"
+          },
+          "$.userEmail": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ],
+            "combine": "AND"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "4.0.10"
+    }
+  }
+}

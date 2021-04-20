@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'my.example'
+version '1.0-SNAPSHOT'
+
+ext.hamcrest_version = "2.2"
+ext.aws_lambda_java_core_version = "1.2.1"
+ext.aws_java_sdk_sqs_version = "1.11.991"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.amazonaws:aws-java-sdk-sqs:$aws_java_sdk_sqs_version"
+    implementation "com.amazonaws:aws-lambda-java-core:$aws_lambda_java_core_version"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testImplementation "org.hamcrest:hamcrest:$hamcrest_version"
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testCompile "au.com.dius:pact-jvm-provider-junit5:4.0.10"
+    testCompile "au.com.dius:pact-jvm-consumer-junit5:4.0.10"
+    testCompile "au.com.dius:pact-jvm-consumer-java8:4.0.10"
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties['pact.rootDir'] = "$rootDir/pacts"
+}

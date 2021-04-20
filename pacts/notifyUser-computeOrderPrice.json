@@ -1,0 +1,39 @@
+{
+  "consumer": {
+    "name": "notifyUser"
+  },
+  "provider": {
+    "name": "computeOrderPrice"
+  },
+  "messages": [
+    {
+      "description": "the price for an order",
+      "metaData": {
+        "contentType": "application/json"
+      },
+      "contents": {
+        "orderPrice": 123.45
+      },
+      "matchingRules": {
+        "body": {
+          "$.orderPrice": {
+            "matchers": [
+              {
+                "match": "decimal"
+              }
+            ],
+            "combine": "AND"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "4.0.10"
+    }
+  }
+}

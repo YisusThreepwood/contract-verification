@@ -1,0 +1,1 @@
+Simple example for serverless microservices contracts verification throught [Pacts](https://pact.io/)
